@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystemWebApi.Models
 {
-    public class Project
+    public class Employee
     {
         [Key]
-        public int ProjectID { get; set; }
+        public int EmployeeID { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
         [Required]
-        public string Description { get; set; }
+        public string LastName { get; set; }
         [Required]
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        [Phone]
+        public string PhoneNumber { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        public string NIP { get; set; }
 
-        public virtual Customer Customer { get; set; }
         public virtual ICollection<EmployeeProject> EmployeeProject { get; set; }
     }
 }

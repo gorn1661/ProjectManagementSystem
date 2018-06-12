@@ -11,9 +11,10 @@ using System;
 namespace ProjectManagementSystemWebApi.Migrations
 {
     [DbContext(typeof(ProjectManagementSystemDbContext))]
-    partial class ProjectManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180612105720_CustomerEmployeeInit")]
+    partial class CustomerEmployeeInit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,27 +65,13 @@ namespace ProjectManagementSystemWebApi.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired();
 
-                    b.HasKey("EmployeeID");
-
-                    b.ToTable("Employee");
-                });
-
-            modelBuilder.Entity("ProjectManagementSystemWebApi.Models.EmployeeProject", b =>
-                {
-                    b.Property<int>("EmployeeProjectID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("EmployeeID");
-
                     b.Property<int?>("ProjectID");
 
-                    b.HasKey("EmployeeProjectID");
-
-                    b.HasIndex("EmployeeID");
+                    b.HasKey("EmployeeID");
 
                     b.HasIndex("ProjectID");
 
-                    b.ToTable("EmployeeProject");
+                    b.ToTable("Employee");
                 });
 
             modelBuilder.Entity("ProjectManagementSystemWebApi.Models.Project", b =>
@@ -111,14 +98,10 @@ namespace ProjectManagementSystemWebApi.Migrations
                     b.ToTable("Project");
                 });
 
-            modelBuilder.Entity("ProjectManagementSystemWebApi.Models.EmployeeProject", b =>
+            modelBuilder.Entity("ProjectManagementSystemWebApi.Models.Employee", b =>
                 {
-                    b.HasOne("ProjectManagementSystemWebApi.Models.Employee", "Employee")
-                        .WithMany("EmployeeProject")
-                        .HasForeignKey("EmployeeID");
-
                     b.HasOne("ProjectManagementSystemWebApi.Models.Project", "Project")
-                        .WithMany("EmployeeProject")
+                        .WithMany("Employee")
                         .HasForeignKey("ProjectID");
                 });
 
