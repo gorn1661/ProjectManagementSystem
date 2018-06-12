@@ -10,7 +10,8 @@ namespace ProjectManagementSystemWebApi.Models
     {
         [Key]
         public int EmployeeProjectID { get; set; }
-        public Employee Employee { get; set; }
-        public Project Project { get; set; }
+
+        public virtual Employee Employee { get; set; }
+        public virtual Project Project { get; set; }
     }
 }
