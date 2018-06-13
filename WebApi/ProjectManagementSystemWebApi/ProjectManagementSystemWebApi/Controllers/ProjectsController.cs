@@ -47,6 +47,96 @@ namespace ProjectManagementSystemWebApi.Controllers
             return Ok(project);
         }
 
+        [HttpGet("GetProjectByNumber")]
+        public async Task<IActionResult> GetProjectByNumber([FromBody] string number)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var project = await _context.Project.Where(m => m.ProjectNumber == number).Select(m => m).ToListAsync();
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(project);
+        }
+
+        [HttpGet("GetProjectByName")]
+        public async Task<IActionResult> GetProjectByName([FromBody] string name)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var project = await _context.Project.Where(m => m.Name == name).Select(m => m).ToListAsync();
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(project);
+        }
+
+        [HttpGet("GetProjectByDate")]
+        public async Task<IActionResult> GetProjectByDate([FromBody] DateTime startDate, [FromBody] DateTime endDate)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var project = await _context.Project.Where(m => m.StartDate > startDate && m.EndDate < endDate).Select(m => m).ToListAsync();
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(project);
+        }
+
+        [HttpGet("GetProjectByCustomer")]
+        public async Task<IActionResult> GetProjectByCustomer([FromBody] Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var project = await _context.Project.Where(m => m.Customer == customer).Select(m => m).ToListAsync();
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(project);
+        }
+
+        [HttpGet("GetProjectByEmployee")]
+        public async Task<IActionResult> GetProjectByEmployee([FromBody] Employee employee)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var project = await _context.EmployeeProject.Where(m => m.Employee == employee).Select(m => m.Project).ToListAsync();
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(project);
+        }
+
         // PUT: api/Projects/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProject([FromRoute] int id, [FromBody] Project project)

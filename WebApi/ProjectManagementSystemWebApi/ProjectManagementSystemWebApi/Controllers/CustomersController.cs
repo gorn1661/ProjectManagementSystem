@@ -47,6 +47,42 @@ namespace ProjectManagementSystemWebApi.Controllers
             return Ok(customer);
         }
 
+        [HttpGet("GetCustomerByName")]
+        public async Task<IActionResult> GetCustomerByName([FromBody] string name)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var customer = await _context.Customer.Where(m => m.FirstName == name || m.LastName == name || m.CompanyName == name).Select(m => m).ToListAsync();
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(customer);
+        }
+
+        [HttpGet("GetCustomerByNip")]
+        public async Task<IActionResult> GetCustomerByNip([FromBody] string nip)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var customer = await _context.Customer.Where(m => m.Pesel == nip || m.NIP == nip).Select(m => m).ToListAsync();
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(customer);
+        }
+
         // PUT: api/Customers/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer([FromRoute] int id, [FromBody] Customer customer)

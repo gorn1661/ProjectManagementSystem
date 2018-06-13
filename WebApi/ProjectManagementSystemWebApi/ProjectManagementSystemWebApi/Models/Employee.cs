@@ -20,6 +20,7 @@ namespace ProjectManagementSystemWebApi.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        public string Pesel { get; set; }
         public string NIP { get; set; }
 
         public virtual ICollection<EmployeeProject> EmployeeProject { get; set; }

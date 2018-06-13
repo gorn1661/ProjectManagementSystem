@@ -47,6 +47,60 @@ namespace ProjectManagementSystemWebApi.Controllers
             return Ok(employee);
         }
 
+        [HttpGet("GetEmployeeByName")]
+        public async Task<IActionResult> GetEmployeeByName([FromBody] string name)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var employee = await _context.Employee.Where(m => m.FirstName == name || m.LastName == name).Select(m => m).ToListAsync();
+
+            if(employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
+        }
+
+        [HttpGet("GetEmployeeByNip")]
+        public async Task<IActionResult> GetEmployeeByNip([FromBody] string nip)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var employee = await _context.Employee.Where(m => m.Pesel == nip || m.NIP == nip).Select(m => m).ToListAsync();
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
+        }
+
+        [HttpGet("GetEmployeeByProject")]
+        public async Task<IActionResult> GetEmployeeByProjectID([FromBody] Project project)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var employee = await _context.EmployeeProject.Where(m => m.Project == project).Select(m => m.Employee).ToListAsync();
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
+        }
+
         // PUT: api/Employees/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmployee([FromRoute] int id, [FromBody] Employee employee)

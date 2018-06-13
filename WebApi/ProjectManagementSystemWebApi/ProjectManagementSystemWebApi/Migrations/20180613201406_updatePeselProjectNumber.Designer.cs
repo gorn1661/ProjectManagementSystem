@@ -11,9 +11,10 @@ using System;
 namespace ProjectManagementSystemWebApi.Migrations
 {
     [DbContext(typeof(ProjectManagementSystemDbContext))]
-    partial class ProjectManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180613201406_updatePeselProjectNumber")]
+    partial class updatePeselProjectNumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
