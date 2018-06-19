@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
+import { EmployeeDataComponent } from './components/employeedata/employeedata.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
@@ -15,6 +16,7 @@ import { CounterComponent } from './components/counter/counter.component';
         AppComponent,
         NavMenuComponent,
         CounterComponent,
+        EmployeeDataComponent,
         FetchDataComponent,
         HomeComponent
     ],
@@ -26,6 +28,7 @@ import { CounterComponent } from './components/counter/counter.component';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
+            { path: 'employee-data', component: EmployeeDataComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
         ])

@@ -1,0 +1,26 @@
+﻿<h1>Employees</h1>
+
+<p>This component get employees data from the server.</p>
+
+<p *ngIf="!employees"><em>Loading...</em></p>
+
+<table class='table' *ngIf="employees">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Lastname(F)</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td>{{ employee.employeeId }}</td>
+            <td>{{ employee.firstName }}</td>
+            <td>{{ employee.lastName }}</td>
+            <td>{{ employee.phoneNumber }}</td>
+            <td>{{ employee.email }}</td>
+        </tr>
+    </tbody>
+</table>
